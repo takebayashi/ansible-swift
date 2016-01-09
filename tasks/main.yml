@@ -1,2 +1,10 @@
 ---
-# tasks file for swift
+- apt: pkg={{item}} update_cache=yes
+  with_items:
+    - clang
+    - libicu-dev
+- apt_key: url=https://swift.org/keys/all-keys.asc state=present
+- get_url: url=https://swift.org/builds/{{platform_short}}/swift-{{version}}/swift-{{version}}-{{platform}}.tar.gz dest=/tmp/swift.tgz
+- file: path=/opt/swift state=directory mode=0755
+- unarchive: src=/tmp/swift.tgz dest={{root}} copy=no
+- file: src={{root}}/swift-{{version}}-{{platform}}/usr dest={{root}}/current state=link force=yes

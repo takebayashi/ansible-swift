@@ -1,2 +1,5 @@
 ---
-# defaults file for swift
+version: 2.2-SNAPSHOT-2016-01-06-a
+platform: ubuntu15.10
+platform_short: ubuntu1510
+root: /opt/swift
